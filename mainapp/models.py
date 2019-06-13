@@ -20,7 +20,7 @@ class Patient(models.Model):
     country = models.CharField(max_length=15, default='India')
     zip_code = models.CharField(max_length=15, blank=True, null=True)
 
-    dob = models.DateField(blank=True, null=True)
+    dob = models.DateField()
     # age = models.PositiveSmallIntegerField()
 
     # sex
