@@ -21,7 +21,7 @@ class Patient(models.Model):
     zip_code = models.CharField(max_length=15, blank=True, null=True)
 
     dob = models.DateField(blank=True, null=True)
-    age = models.PositiveSmallIntegerField()
+    # age = models.PositiveSmallIntegerField()
 
     # sex
     M = 'M'
