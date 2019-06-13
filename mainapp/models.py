@@ -42,7 +42,7 @@ class Patient(models.Model):
     email = models.EmailField(max_length=50, blank=True, null=True)
 
     blood_group = models.CharField(max_length=5, blank=True, null=True)
-    remarks = models.TextField()
+    remarks = models.TextField(blank=True, null=True)
 
     date_of_registration = models.DateTimeField(auto_now_add=True)
 
