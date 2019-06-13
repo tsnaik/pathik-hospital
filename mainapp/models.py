@@ -15,8 +15,8 @@ class Patient(models.Model):
     # address
     address1 = models.CharField(max_length=1000)
     address2 = models.CharField(max_length=1000, blank=True, null=True)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, default='Surat')
+    state = models.CharField(max_length=50, default='Gujarat')
     country = models.CharField(max_length=15, default='India')
     zip_code = models.CharField(max_length=15, blank=True, null=True)
 
@@ -34,8 +34,8 @@ class Patient(models.Model):
     ]
     sex = models.CharField(
         max_length=2,
-        choices=SEX_CHOICES,
-        default=M,
+        choices=SEX_CHOICES
+        # default=M,
     )
 
     phone_number = models.CharField(max_length=15)
