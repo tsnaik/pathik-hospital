@@ -15,7 +15,10 @@
 
     <!-- Custom styles -->
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/index.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/base.css' %}">
+    {% block importcss %}
+    {% endblock %}
 </head>
 
 <body>
