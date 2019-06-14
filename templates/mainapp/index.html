@@ -1,164 +1,105 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends 'mainapp/base.html' %}
+{% block title %}
+    <title>Manage Patients</title>
+{% endblock %}
 
-    <title>Pathik Children Hospital</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-
-    <!-- Custom styles -->
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/index.css' %}">
-</head>
-
-<body>
+{% block content %}
 {% load crispy_forms_tags %}
 
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Pathik Children Hospital</a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
-        </li>
-    </ul>
-</nav>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="display-4">Manage Patients</h1>
 
-<div class="container-fluid">
+    </div>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <button type="button"
+                id="reg-button" class="btn btn-outline-dark mr-2"><span data-feather="user-plus"></span>
+            Register
+        </button>
+        <button type="button" class="btn btn-outline-dark mr-2"><span data-feather="search"></span> Find
+        </button>
+    </div>
 
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <span data-feather="users"></span>
-                            Manage Patients <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                </ul>
+    <div id="reg-patient">
+        {#                <h3 class="mt-3">Register a patient</h3>#}
+        <form class="mt-3" action="/" method="post">
+            {% csrf_token %}
+
+            <span class="font-weight-bold">Primary Details</span>
+            <div class="form-row">
+                <div class="col-4">
+                    {{ form.first_name | as_crispy_field }}
+                </div>
+                <div class="col-4">
+                    {{ form.middle_name | as_crispy_field }}
+                </div>
+                <div class="col-4">
+                    {{ form.last_name | as_crispy_field }}
+                </div>
             </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="display-4">Manage Patients</h1>
+            <div class="form-row">
+                <div class="col-4">
+                    {{ form.dob | as_crispy_field }}
+                </div>
+                <div class="col-4">
+                    {{ form.sex | as_crispy_field }}
+                </div>
+                <div class="col-4">
+                    {{ form.blood_group | as_crispy_field }}
+                </div>
 
             </div>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <button type="button"
-                        id="reg-button" class="btn btn-outline-dark mr-2"><span data-feather="user-plus"></span>
-                    Register
-                </button>
-                <button type="button" class="btn btn-outline-dark mr-2"><span data-feather="search"></span> Find
-                </button>
-            </div>
-
-            <div id="reg-patient">
-                {#                <h3 class="mt-3">Register a patient</h3>#}
-                <form class="mt-3" action="/" method="post">
-                    {% csrf_token %}
-
-                    <span class="font-weight-bold">Primary Details</span>
-                    <div class="form-row">
-                        <div class="col-4">
-                            {{ form.first_name | as_crispy_field }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.middle_name | as_crispy_field }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.last_name | as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-4">
-                            {{ form.dob | as_crispy_field }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.sex | as_crispy_field }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.blood_group | as_crispy_field }}
-                        </div>
-
-                    </div>
-                    {% comment %}<div class="row">
+            {% comment %}<div class="row">
                         <div class="col"><hr></div>
                         <div class="col-auto">Address</div>
                         <div class="col"><hr></div>
                     </div>{% endcomment %}
-                    <span class="font-weight-bold">Address</span>
-                    <div class="form-row">
-                        <div class="col-6">
-                            {{ form.address1 | as_crispy_field }}
-                        </div>
-                        <div class="col-6">
-                            {{ form.address2 | as_crispy_field }}
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-3">
-                            {{ form.city | as_crispy_field }}
-                        </div>
-                        <div class="col-3">
-                            {{ form.state | as_crispy_field }}
-                        </div>
-                        <div class="col-3">
-                            {{ form.country | as_crispy_field }}
-                        </div>
-                        <div class="col-3">
-                            {{ form.zip_code | as_crispy_field }}
-                        </div>
-                    </div>
-                    <span class="font-weight-bold">Contact Details</span>
-                    <div class="form-row">
-                        <div class="col-6">
-                            {{ form.phone_number | as_crispy_field }}
-                        </div>
-                        <div class="col-6">
-                            {{ form.email | as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12">
-                            {{ form.remarks | as_crispy_field }}
-                        </div>
-                    </div>
-                    {#                    {{ form|crispy }}#}
-
-                    <input type="submit" class="btn btn-primary" value="Submit">
-                </form>
+            <span class="font-weight-bold">Address</span>
+            <div class="form-row">
+                <div class="col-6">
+                    {{ form.address1 | as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.address2 | as_crispy_field }}
+                </div>
             </div>
-        </main>
+
+            <div class="form-row">
+                <div class="col-3">
+                    {{ form.city | as_crispy_field }}
+                </div>
+                <div class="col-3">
+                    {{ form.state | as_crispy_field }}
+                </div>
+                <div class="col-3">
+                    {{ form.country | as_crispy_field }}
+                </div>
+                <div class="col-3">
+                    {{ form.zip_code | as_crispy_field }}
+                </div>
+            </div>
+            <span class="font-weight-bold">Contact Details</span>
+            <div class="form-row">
+                <div class="col-6">
+                    {{ form.phone_number | as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.email | as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12">
+                    {{ form.remarks | as_crispy_field }}
+                </div>
+            </div>
+            {#                    {{ form|crispy }}#}
+
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
     </div>
-</div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<!--<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-    feather.replace()
-</script>
+{% endblock %}
 
 {% load static %}
-<script src="{% static 'mainapp/js/index.js' %}"></script>
 
-</body>
-</html>
+{% block importScripts %}
+    <script src="{% static 'mainapp/js/index.js' %}"></script>
+{% endblock %}
