@@ -9,6 +9,11 @@ from mainapp.models import Patient
 
 
 def index(request):
+    form: RegForm = RegForm()
+    return render(request, 'mainapp/index.html', {'form': form})
+
+
+def register_patient(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -16,15 +21,12 @@ def index(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/')
+            patient = form.save()
+            return HttpResponseRedirect('/viewPatient/{}'.format(patient.id))
 
-    # if a GET (or any other method) we'll create a blank form
+    # if a GET (or any other method)
     else:
-        form = RegForm()
-
-    return render(request, 'mainapp/index.html', {'form': form})
+        return HttpResponseRedirect('/')
 
 
 def view_patient(request, patient_id):
