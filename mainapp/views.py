@@ -8,9 +8,9 @@ from mainapp.forms import RegForm
 from mainapp.models import Patient
 
 
-def index(request):
+def manage_patients(request):
     form: RegForm = RegForm()
-    return render(request, 'mainapp/index.html', {'form': form})
+    return render(request, 'mainapp/manage_patients.html', {'form': form})
 
 
 def register_patient(request):
