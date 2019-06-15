@@ -11,17 +11,20 @@
     </div>
 
     <dl class="row">
+        <dt class="col-sm-3">Registration #</dt>
+        <dd class="col-sm-9"><strong>{{ patient.id }}</strong></dd>
+
         <dt class="col-sm-3">Full Name</dt>
         <dd class="col-sm-9">{{ patient.first_name }} {{ patient.middle_name }} {{ patient.last_name }}</dd>
 
         <dt class="col-sm-3">Date of Birth</dt>
         <dd class="col-sm-9">{{ patient.dob }}</dd>
 
-        <dt class="col-sm-3">Sex</dt>
-        <dd class="col-sm-9">{{ patient.get_sex_display }}</dd>
-
         <dt class="col-sm-3">Age</dt>
         <dd class="col-sm-9">{{ age }}</dd>
+
+        <dt class="col-sm-3">Sex</dt>
+        <dd class="col-sm-9">{{ patient.get_sex_display }}</dd>
 
         {% if patient.blood_group %}
             <dt class="col-sm-3">Blood Group</dt>
@@ -45,6 +48,9 @@
             <dt class="col-sm-3">Email Address</dt>
             <dd class="col-sm-9">{{ patient.email }}</dd>
         {% endif %}
+
+        <dt class="col-sm-3">Date of Registration</dt>
+        <dd class="col-sm-9">{{ patient.date_of_registration }}</dd>
 
         {% if patient.remarks %}
             <dt class="col-sm-3">Remarks</dt>
