@@ -1,0 +1,67 @@
+{% extends 'mainapp/base.html' %}
+{% block title %}
+    <title>View Patient</title>
+{% endblock %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="display-4">Patient : {{ patient.first_name }}</h1>
+    </div>
+
+    <dl class="row">
+        <dt class="col-sm-3">Full Name</dt>
+        <dd class="col-sm-9">{{ patient.first_name }} {{ patient.middle_name }} {{ patient.last_name }}</dd>
+
+        <dt class="col-sm-3">Date of Birth</dt>
+        <dd class="col-sm-9">{{ patient.dob }}</dd>
+
+        <dt class="col-sm-3">Sex</dt>
+        <dd class="col-sm-9">{{ patient.get_sex_display }}</dd>
+
+        <dt class="col-sm-3">Age</dt>
+        <dd class="col-sm-9">{{ age }}</dd>
+
+        {% if patient.blood_group %}
+            <dt class="col-sm-3">Blood Group</dt>
+            <dd class="col-sm-9">{{ patient.blood_group }}</dd>
+        {% endif %}
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">
+            {{ patient.address1 }} <br>
+            {% if patient.address2 %}
+                {{ patient.address2 }}<br>
+            {% endif %}
+            {{ patient.city }} <br>
+            {{ patient.state }}, {{ patient.country }} - {{ patient.zip_code }}
+        </dd>
+
+        <dt class="col-sm-3">Phone Number</dt>
+        <dd class="col-sm-9">{{ patient.phone_number }}</dd>
+
+        {% if patient.email %}
+            <dt class="col-sm-3">Email Address</dt>
+            <dd class="col-sm-9">{{ patient.email }}</dd>
+        {% endif %}
+
+        {% if patient.remarks %}
+            <dt class="col-sm-3">Remarks</dt>
+            <dd class="col-sm-9">{{ patient.remarks }}</dd>
+        {% endif %}
+
+
+    </dl>
+
+{% endblock %}
+
+{% load static %}
+
+{% block importScripts %}
+    <script src="{% static 'mainapp/js/index.js' %}"></script>
+{% endblock %}
+
+{% block importcss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/index.css' %}">
+{% endblock %}
