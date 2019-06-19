@@ -30,7 +30,6 @@ def register_patient(request):
 
 
 def view_patient(request, patient_id):
-    print(patient_id)
     patient = Patient.objects.get(id=patient_id)
     current_date = datetime.datetime.now().date()
 
@@ -50,3 +49,11 @@ def view_patient(request, patient_id):
         'age': "{} years, {} months, {} days".format(years_int, months_int, days_int),
     }
     return render(request, 'mainapp/view_patients.html', context)
+
+
+def print_sticker(request, patient_id):
+    patient = Patient.objects.get(id=patient_id)
+    context = {
+        'patient': patient,
+    }
+    return render(request, 'mainapp/print_sticker.html', context)

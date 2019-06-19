@@ -21,7 +21,7 @@
 
     <div id="reg-patient">
         {#                <h3 class="mt-3">Register a patient</h3>#}
-        <form class="mt-3" action="/registerPatient" method="post">
+        <form class="mt-3" action="{% url 'registerPatient' %}" method="post">
             {% csrf_token %}
 
             <span class="font-weight-bold">Primary Details</span>

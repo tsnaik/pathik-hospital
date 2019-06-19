@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sticker: {{ patient.id }}</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/print_sticker.css' %}">
+
+</head>
+<body>
+Name: {{ patient.first_name }} {{ patient.middle_name }} {{ patient.last_name }}
+</body>
+</html>
