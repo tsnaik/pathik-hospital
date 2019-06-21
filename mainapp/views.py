@@ -1,6 +1,6 @@
 import datetime
 
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -22,11 +22,11 @@ def register_patient(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             patient = form.save()
-            return HttpResponseRedirect('/viewPatient/{}'.format(patient.id))
+            return redirect('viewPatient', patient.id)
 
     # if a GET (or any other method)
     else:
-        return HttpResponseRedirect('/')
+        return redirect('/')
 
 
 def view_patient(request, patient_id):
