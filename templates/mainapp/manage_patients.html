@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-{% load crispy_forms_tags %}
+    {% load crispy_forms_tags %}
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 class="display-4">Manage Patients</h1>
@@ -15,10 +15,25 @@
                 id="reg-button" class="btn btn-outline-dark mr-2"><span data-feather="user-plus"></span>
             Register
         </button>
-        <button type="button" class="btn btn-outline-dark mr-2"><span data-feather="search"></span> Find
+        <button type="button"
+                id="find-button" class="btn btn-outline-dark mr-2"><span data-feather="search"></span> Find
         </button>
     </div>
 
+
+    <div id="find-patient">
+        <div class="form-row mt-3">
+            <div class="form-group col-3">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input type="text" class="form-control" id="pid" placeholder="Patient #">
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" id="find-id">Find</button>
+            </div>
+        </div>
+        <p class="text-danger" id="id-error">
+        </p>
+    </div>
     <div id="reg-patient">
         {#                <h3 class="mt-3">Register a patient</h3>#}
         <form class="mt-3" action="{% url 'registerPatient' %}" method="post">
@@ -102,6 +117,10 @@
 
 {% block importScripts %}
     <script src="{% static 'mainapp/js/manage_patients.js' %}"></script>
+    <script type="text/javascript">
+        window.findPatientByIdURL = '{% url 'findPatientById' %}';
+        window.viewPatientURL = '{% url 'viewPatient' 999 %}';
+    </script>
 {% endblock %}
 
 {% block importcss %}

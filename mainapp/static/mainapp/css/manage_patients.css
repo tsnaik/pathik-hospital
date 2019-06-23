@@ -1,3 +1,11 @@
 #reg-patient {
     display: none;
 }
+
+#find-patient {
+    display: none;
+}
+
+#id-error {
+    display: none;
+}

@@ -24,13 +24,13 @@ class Patient(models.Model):
     # age = models.PositiveSmallIntegerField()
 
     # sex
-    M = 'M'
-    F = 'F'
-    O = 'O'
+    MALE = 'M'
+    FEMALE = 'F'
+    OTHER = 'O'
     SEX_CHOICES = [
-        (M, 'Male'),
-        (F, 'Female'),
-        (O, 'Other'),
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other'),
     ]
     sex = models.CharField(
         max_length=2,

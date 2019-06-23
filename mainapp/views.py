@@ -1,9 +1,9 @@
 import datetime
 
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-# Create your views here.
 from mainapp.forms import RegForm
 from mainapp.models import Patient
 
@@ -57,3 +57,12 @@ def print_sticker(request, patient_id):
         'patient': patient,
     }
     return render(request, 'mainapp/print_sticker.html', context)
+
+
+def find_patient_by_id(request):
+    try:
+        Patient.objects.get(id=request.GET.get('pid'))
+    except Patient.DoesNotExist:
+        return JsonResponse(data={}, status=404)
+
+    return JsonResponse({})

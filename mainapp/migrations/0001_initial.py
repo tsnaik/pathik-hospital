@@ -3,6 +3,7 @@
 from django.db import migrations, models
 
 
+# noinspection PyPep8
 class Migration(migrations.Migration):
 
     initial = True
